@@ -5,17 +5,13 @@ public class PasswordChecker
     //function that check if the password is valid
     private static void passwordIsValid(String password)
     {
-        boolean password_null = true;
+        boolean password_null = password.isEmpty();
         boolean pass_length_above_8 = (password.toCharArray().length >= 8);
         boolean contain_upper_case_letters = password.matches(".*[A-Z].*");;
         boolean contain_lower_case_letter = password.matches(".*[a-z].*");
         boolean contain_numbers = password.matches(".*\\d.*");;
         boolean contain_special_characters = password.matches(".*[$&+,:;=?@#|'<>.^*()%!-].*");
-
-        if(password != null)
-        {
-            password_null = false;
-        }
+        
         //Calling the function for error handling
         error_handling(password_null ,pass_length_above_8 ,contain_upper_case_letters ,contain_lower_case_letter,
                         contain_special_characters ,contain_numbers);
