@@ -11,7 +11,7 @@ public class PasswordChecker
         boolean contain_lower_case_letter = password.matches(".*[a-z].*");
         boolean contain_numbers = password.matches(".*\\d.*");;
         boolean contain_special_characters = password.matches(".*[$&+,:;=?@#|'<>.^*()%!-].*");
-        
+
         //Calling the function for error handling
         error_handling(password_null ,pass_length_above_8 ,contain_upper_case_letters ,contain_lower_case_letter,
                         contain_special_characters ,contain_numbers);
@@ -94,15 +94,16 @@ public class PasswordChecker
         //Testing if the password meets the minimum requirement set:passwordIsValid(password)
         Scanner scan = new Scanner(System.in);
         System.out.println("----------------------------------------------------------");
-        System.out.println("Enter password");
+        System.out.println("1. Enter password");
         String password = scan.nextLine();
         passwordIsValid(password);
         System.out.println("------------------------------------------------------------");
 
         //Testing if the password meet at least 3 requirements;passwordIsOk(password)
         System.out.println("------------------------------------------------------------");
-        System.out.println("Enter password to check if it meets at least 3 requirements");
-        System.out.println(passwordIsOk(password));
+        System.out.println("2. Enter password to check if it meets at least 3 requirements");
+        String password2 = scan.nextLine();
+        System.out.println(passwordIsOk(password2));
         System.out.println("------------------------------------------------------------");
     }
 }
