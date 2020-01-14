@@ -1,6 +1,8 @@
 public class PasswordChecker
 {
 
+    static int condition_met = 0;
+
     private static void passwordIsValid(String password)
     {
         boolean password_null = true;
@@ -12,6 +14,7 @@ public class PasswordChecker
         boolean contain_upper_case_letters = false;
         boolean contain_lower_case_letter = false;
         boolean contain_numbers = false;
+        boolean contain_special_characters =password.matches("[$&+,:;=?@#|'<>.^*()%!-]");
         String upper_case_letters = "/[A-Z]/g";
         String lowerCaseLetters = "/[a-z]/g";
         String numbers = "/[0-9]/g";
@@ -44,13 +47,13 @@ public class PasswordChecker
 
     }
 
-    private static boolean passwordIsOk()
+    private static boolean passwordIsOk(String password)
     {
-        return true;
+        return condition_met >= 3;
     }
 
     private static void error_handling(boolean password_null  ,boolean pass_length_above_8 ,boolean contain_upper_case_letters ,
-                                       boolean contain_lower_case_letter ,boolean contain_numbers)
+                                       boolean contain_lower_case_letter ,boolean contains_special_char ,boolean contain_numbers)
     {
             try
             {
@@ -60,11 +63,19 @@ public class PasswordChecker
                     {
                         if(contain_upper_case_letters)
                         {
+                            ++condition_met;
                             if(contain_lower_case_letter)
                             {
+                                ++condition_met;
                                 if(contain_numbers)
                                 {
-                                  passwordIsOk();
+                                    ++condition_met;
+                                    if(contains_special_char)
+                                    {
+                                        ++condition_met;
+                                    }else{
+                                        throw  new ArithmeticException("Password has no specail characters");
+                                    }
                                 }else{
                                     throw new ArithmeticException("Passowrd has no number/s");
                                 }
