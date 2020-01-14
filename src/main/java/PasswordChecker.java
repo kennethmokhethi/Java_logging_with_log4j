@@ -1,3 +1,7 @@
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class PasswordChecker
 {
 
@@ -6,44 +10,19 @@ public class PasswordChecker
     private static void passwordIsValid(String password)
     {
         boolean password_null = true;
-        boolean pass_length_above_8 = false;
-        boolean passUpperCase = false;
-        boolean passLowerCase = false;
-        boolean passNum = false;
-        boolean passNul = true;
-        boolean contain_upper_case_letters = false;
-        boolean contain_lower_case_letter = false;
-        boolean contain_numbers = false;
-        boolean contain_special_characters =password.matches("[$&+,:;=?@#|'<>.^*()%!-]");
-        String upper_case_letters = "/[A-Z]/g";
-        String lowerCaseLetters = "/[a-z]/g";
-        String numbers = "/[0-9]/g";
-        boolean status;
+        boolean pass_length_above_8 = (password.toCharArray().length >= 8);
+        boolean contain_upper_case_letters = password.matches(".*[A-Z].*");;
+        boolean contain_lower_case_letter = password.matches(".*[a-z].*");
+        boolean contain_numbers = password.matches(".*\\d.*");;
+        boolean contain_special_characters =password.matches(".*[$&+,:;=?@#|'<>.^*()%!-].*");
 
         if(password != null)
         {
             password_null = false;
-            if(password.toCharArray().length >= 8)
-            {
-                pass_length_above_8 = true;
-            }
-
-            if(password.matches(upper_case_letters))
-            {
-                contain_upper_case_letters = true;
-            }
-            if(password.matches(lowerCaseLetters))
-            {
-                contain_lower_case_letter = true;
-            }
-
-            if(password.matches(numbers))
-            {
-                contain_numbers = true;
-            }
         }
 
-
+        error_handling(password_null,pass_length_above_8,contain_upper_case_letters,contain_lower_case_letter,
+                        contain_special_characters,contain_numbers);
 
     }
 
@@ -105,6 +84,11 @@ public class PasswordChecker
 
     public static void main(String[] args)
     {
+        /*Scanner scan = new Scanner(System.in);
+        System.out.println("Enter password");
+        String password = scan.nextLine();*/
+        passwordIsValid("Hel24d");
+
 
     }
 }
