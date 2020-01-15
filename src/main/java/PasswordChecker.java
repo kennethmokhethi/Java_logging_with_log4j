@@ -34,26 +34,26 @@ public class PasswordChecker
                                 if (contains_special_char) {
                                     System.out.println("All requirements met");
                                 } else {
-                                    throw new ArithmeticException("Password has no special character");
+                                    throw new ArithmeticException("password should have at least one special character");
                                 }
                             } else {
-                                throw new ArithmeticException("Password has no number");
+                                throw new ArithmeticException("password should at least have one digit");
                             }
 
                         } else {
-                            throw new ArithmeticException("Password has no lower case letter");
+                            throw new ArithmeticException("password should have at least one lowercase letter");
                         }
 
                     } else {
-                        throw new ArithmeticException("Password has no upper case letter");
+                        throw new ArithmeticException("password should have at least one uppercase letter");
                     }
 
                 } else {
-                    throw new ArithmeticException("Password less than 8 characters");
+                    throw new ArithmeticException("password should be longer than than 8 characters");
                 }
 
             } else {
-                throw new ArithmeticException("Password is null");
+                throw new ArithmeticException("password should exist");
             }
 
         } catch (Exception e) {
@@ -81,10 +81,7 @@ public class PasswordChecker
         
         return condition_met >= 1;
     }
-
-
-
-
+    
     public static void main(String[] args)
     {
         //Testing if the password meets the minimum requirement set:passwordIsValid(password)
