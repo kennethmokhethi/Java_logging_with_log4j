@@ -1,7 +1,12 @@
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.util.Scanner;
 
 public class PasswordChecker
 {
+
+    private static final Logger logger = LogManager.getLogger(PasswordChecker.class.getName());
     //function that check if the password is valid
     public static String passwordIsValid(String password) throws Exception {
         boolean password_null = password.isEmpty();
@@ -33,6 +38,7 @@ public class PasswordChecker
                                 if (contains_special_char) {
                                     return ("All requirements met");
                                 } else {
+                                    logger.error("No special character found");
                                     throw new NoSpecialChar("password should have at least one special character");
                                 }
                             } else {
@@ -55,6 +61,7 @@ public class PasswordChecker
                 throw new NullPointerException("password should exist");
             }
 
+  // return "";
     }
 
     //function that check if the password meets at least 3 requirements
@@ -81,17 +88,18 @@ public class PasswordChecker
     public static void main(String[] args) throws Exception {
         //Testing if the password meets the minimum requirement set:passwordIsValid(password)
         Scanner scan = new Scanner(System.in);
-        System.out.println("----------------------------------------------------------");
-        System.out.println("1. Enter password");
+        logger.info("----------------------------------------------------------");
+        logger.info("1. Enter password");
         String password = scan.nextLine();
-        passwordIsValid(password);
+        logger.debug(passwordIsValid(password));
         System.out.println("------------------------------------------------------------");
 
         //Testing if the password meet at least 3 requirements;passwordIsOk(password)
-        System.out.println("------------------------------------------------------------");
-        System.out.println("2. Enter password to check if it meets at least 3 requirements");
+        logger.info("------------------------------------------------------------");
+        logger.info("2. Enter password to check if it meets at least 3 requirements");
         String password2 = scan.nextLine();
-        System.out.println(passwordIsOk(password2));
-        System.out.println("------------------------------------------------------------");
+
+        logger.debug(passwordIsOk(password2));
+        logger.info("------------------------------------------------------------");
     }
 }
